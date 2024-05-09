@@ -1,0 +1,43 @@
+.movie--rating {
+  color: #8d8d8d;
+}
+
+.movie--title {
+  color: white;
+}
+
+.movie--rating {
+  display: flex;
+  justify-content: space-between;
+}
+
+.circle--container {
+  display: flex;
+  gap: 5px;
+}
+
+div[class^="circle"] {
+  --size: 25px;
+
+  background: white;
+  border-radius: 100%;
+  display: inline-block;
+  height: var(--size);
+  width: var(--size);
+  overflow: hidden;
+  position: relative;
+}
+div[class^="circle"]:after {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 100%;
+  left: 0;
+  background: #73cb3e;
+}
+div.circle100:after {
+  width: 100%;
+}
+div.circle50:after {
+  width: 50%;
+}

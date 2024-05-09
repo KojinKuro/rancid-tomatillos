@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <Header />
       <Hero />
-      <Movies />
+      <Movies movies={moviesData} />
       <Footer />
     </div>
   );
