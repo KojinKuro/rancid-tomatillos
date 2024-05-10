@@ -15,6 +15,7 @@ export default function Movie({ movie }) {
   );
 }
 
+// code kept here because it does not need to be exported anywhere
 function MovieRating({ rating }) {
   const formattedRating = (rating / 2).toFixed(1);
   let ratingElements = [];

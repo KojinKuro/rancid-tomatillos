@@ -59,6 +59,7 @@
   justify-content: space-between;
 }
 
+/* CSS below is for movie rating container */
 .circle--container {
   display: flex;
   gap: 5px;
