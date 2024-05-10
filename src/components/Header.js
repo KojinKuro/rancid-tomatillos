@@ -5,7 +5,7 @@ export default function Header() {
   return (
   <header className="header">
     <h1 className="logo">
-      RANCID <span className="green-logo"> T</span>O<span>MATILLOS</span>
+      RANCID T<span className="green-logo">O</span>MATILLOS
     </h1>
     <div className="search-bar">
       <input type="text" placeholder="Search movies" />
