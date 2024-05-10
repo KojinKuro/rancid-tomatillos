@@ -27,7 +27,7 @@ export default function Header({ movies }) {
       <input type="text" placeholder="Search movies" value={searchTerm} onChange={handleSearchChange}/>
       <button type="button" className="search-button">🔍</button>
       {filteredMovies.length > 0 && (
-        <ul className="search-resuts">
+        <ul className="search-results">
           {filteredMovies.map(movie => (
             <li key={movie.id}>{movie.title}</li>
           ))}
