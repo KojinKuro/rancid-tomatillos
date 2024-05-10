@@ -18,12 +18,14 @@ export default function Movie({ movie }) {
 
 // code kept here because it does not need to be exported anywhere
 function MovieRating({ rating }) {
-  const formattedRating = (rating / 2).toFixed(1);
+  const formattedRating = rating.toFixed(1);
   let ratingElements = [];
 
   let testRating = Math.round(rating);
   for (let i = 0; i < 5; ++i) {
     if (testRating >= 2) {
+      <Circle key={i} percentage={100} />;
+
       ratingElements.push(<Circle key={i} percentage={100} />);
       testRating -= 2;
     } else if (testRating >= 1) {
@@ -37,7 +39,7 @@ function MovieRating({ rating }) {
   return (
     <div className="movie--rating">
       <span className="circle--container">{ratingElements}</span>
-      <span>{formattedRating} / 5.0</span>
+      <span>{formattedRating} / 10.0</span>
     </div>
   );
 }

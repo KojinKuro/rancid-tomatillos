@@ -38,6 +38,7 @@
   flex-direction: column;
   gap: 10px;
   max-width: 600px;
+  text-align: left;
 
   .hero-title {
     text-transform: uppercase;

@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <Header movies={moviesData} />
-      <Hero movie={movieData.movies[0]} />
+      <Hero movies={moviesData.slice(0, 5)} />
       <Movies movies={moviesData} />
       <Footer />
     </div>
