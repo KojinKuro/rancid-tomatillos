@@ -1,87 +1,14 @@
 .header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    background-color: transparent;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    box-shadow: none;
-    z-index: 1000; 
-  }
-  
-  .logo {
-    font-size: 32px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 40px;
-  }
-  
-  .green-logo {
-    color: #4CAF50;
-  }
-  
-  .search-bar {
-    position: relative;
-    display: flex;
-    flex: 1 1 auto;
-    max-width: 600px;
-    margin-right: 20px;
-  }
-  
-  .search-bar input[type="text"] {
-    width: calc(100% - 60px);
-    padding: 8px 20px;
-    font-size: 16px;
-    border: 2px solid #282a28;
-    border-radius: 25px 0 0 25px;
-    background-color: rgba(255, 255, 255, 0.8);
-    margin-left: -20px;
-    border-right: none;
-    margin-right: 100px;
-  }
-  
-  .search-button {
-    position: absolute; 
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 50px;
-    background: none;
-    border:  2px solid #282a28;
-    color: white;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 0 25px 25px 0;
-    border-left: none;
-    margin-right: 100px;
-  }
-  
-  .search-results {
-    position: absolute;
-    width: 100%;
-    background: white;
-    color: black;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 2;
-    max-height: 300px; 
-    overflow-y: auto;
-    border-radius: 0 0 25px 25px;
-    border: 2px solid #4CAF50;
-    border-radius: 0 0 25px 25px;
-  }
-  
-  .search-results li {
-    padding: 10px 20px;
-    cursor: pointer;
-    list-style-type: none;
-  }
-  
-  .search-results li:hover {
-    background-color: white;
-  }
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+
+  background-color: transparent;
+}

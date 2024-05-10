@@ -1,0 +1,61 @@
+footer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+
+  padding: 20px;
+
+  height: 190px;
+
+  background-color: black;
+
+  .footer--about {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    max-width: 450px;
+    padding-left: 20px;
+    border-left: 1px solid white;
+
+    /* remove browser default */
+    p {
+      margin: 0;
+    }
+  }
+
+  .footer--credits {
+    margin-top: auto;
+
+    .footer--credits-by {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.credit--container {
+  display: flex;
+  gap: 25px;
+}
+
+.credit {
+  .credit--name {
+    font-weight: 900;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+
+    color: white;
+  }
+  a:visited {
+    color: white;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
