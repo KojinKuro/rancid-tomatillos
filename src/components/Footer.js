@@ -32,7 +32,7 @@ export default function Footer() {
 
 function Credit({ name, github, linkedin }) {
   return (
-    <div className="credit">
+    <section className="credit">
       <div className="credit--name">{name}</div>
       <a href={`https://github.com/${github}`}>
         <box-icon color="white" name="github" type="logo"></box-icon>
@@ -42,6 +42,6 @@ function Credit({ name, github, linkedin }) {
         <box-icon color="white" type="logo" name="linkedin-square"></box-icon>
         <span className="credit--text">@{linkedin}</span>
       </a>
-    </div>
+    </section>
   );
 }

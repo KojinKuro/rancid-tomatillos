@@ -18,6 +18,7 @@ footer {
     padding-left: 20px;
     border-left: 1px solid white;
 
+    /* remove browser default */
     p {
       margin: 0;
     }
