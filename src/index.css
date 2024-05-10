@@ -12,6 +12,16 @@ code {
     monospace;
 } */
 
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 :root {
   background-color: #1e1e1e;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -19,4 +29,8 @@ code {
     sans-serif;
 
   color: white;
+}
+
+input:focus {
+  outline: 1px solid #73cb3e;
 }
