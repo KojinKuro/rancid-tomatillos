@@ -3,7 +3,13 @@ import "./Movie.css";
 export default function Movie({ movie }) {
   return (
     <div className="movie">
-      <img src={movie.poster_path} alt={`${movie.title} poster`} width="100%" />
+      <div className="movie--poster">
+        <img src={movie.poster_path} alt={`${movie.title} poster`} />
+        <div className="movie--overlay">
+          <box-icon name="play-circle" color="#73cb3e" size="100px"></box-icon>
+        </div>
+      </div>
+
       <MovieRating rating={movie.average_rating} />
       <div className="movie--title">{movie.title}</div>
     </div>
