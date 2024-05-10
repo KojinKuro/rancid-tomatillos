@@ -1,3 +1,4 @@
+import Circle from "./Circle";
 import "./Movie.css";
 
 export default function Movie({ movie }) {
@@ -23,13 +24,13 @@ function MovieRating({ rating }) {
   let testRating = Math.round(rating);
   for (let i = 0; i < 5; ++i) {
     if (testRating >= 2) {
-      ratingElements.push(<div key={i} className="circle100"></div>);
+      ratingElements.push(<Circle key={i} percentage={100} />);
       testRating -= 2;
     } else if (testRating >= 1) {
-      ratingElements.push(<div key={i} className="circle50"></div>);
+      ratingElements.push(<Circle key={i} percentage={50} />);
       testRating -= 1;
     } else {
-      ratingElements.push(<div key={i} className="circle"></div>);
+      ratingElements.push(<Circle key={i} percentage={0} />);
     }
   }
 

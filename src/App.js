@@ -11,8 +11,8 @@ function App() {
 
   return (
     <div className="App">
-      <Header movies={moviesData}/>
-      <Hero />
+      <Header movies={moviesData} />
+      <Hero movie={movieData.movies[0]} />
       <Movies movies={moviesData} />
       <Footer />
     </div>
