@@ -8,11 +8,13 @@ import movieData from "./moviesData";
 
 function App() {
   const [moviesData, setMoviesData] = useState(movieData.movies);
+  const firstMovie = movieData.movies[0];
+
 
   return (
     <div className="App">
       <Header movies={moviesData}/>
-      <Hero />
+      <Hero movie={firstMovie}/>
       <Movies />
       <Footer />
     </div>
