@@ -15,9 +15,10 @@
   }
   
   .logo {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
     cursor: pointer;
+    margin-left: 40px;
   }
   
   .green-logo {
@@ -32,12 +33,13 @@
   }
   
   .search-bar input[type="text"] {
-    width: calc(100% - 50px);
+    width: calc(100% - 60px);
     padding: 8px 20px;
     font-size: 16px;
     border: 2px solid #4CAF50;
     border-radius: 25px 0 0 25px;
     background-color: rgba(255, 255, 255, 0.8);
+    margin-left: -20px;
   }
   
   .search-button {

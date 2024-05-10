@@ -25,9 +25,11 @@
     position: relative;
     z-index: 2;
     text-align: left;
-    padding: 20px;
+    padding: 40px;
     max-width: 600px;
     border-radius: 8px;
+    margin-left: -570px;
+    margin-bottom: -80px;
 }
 
 .hero-title {
