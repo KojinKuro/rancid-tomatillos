@@ -1,9 +1,9 @@
 import Circle from "./Circle";
 import "./Movie.css";
 
-export default function Movie({ movie }) {
+export default function Movie({ movie, onSelect }) {
   return (
-    <section className="movie">
+    <section className="movie" onClick={() => onSelect(movie)}>
       <div className="movie--poster">
         <img src={movie.poster_path} alt={`${movie.title} poster`} />
         <div className="movie--overlay">
