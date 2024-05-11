@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import { getMovies } from "./apiCalls";
 import Details from "./components/Details";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -10,6 +11,11 @@ import movieData from "./moviesData";
 function App() {
   const [moviesData, setMoviesData] = useState(movieData.movies);
   const [selectedMovie, setSelectedMovie] = useState(null);
+
+  // call to the server for the movie data
+  useEffect(() => {
+    getMovies().then(setMoviesData);
+  }, []);
 
   const handleMovieSelect = (movie) => {
     setSelectedMovie(movie);
