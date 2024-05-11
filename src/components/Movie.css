@@ -44,23 +44,7 @@
   }
 }
 
-.movie--rating {
-  color: #8d8d8d;
-}
-
 .movie--title {
   min-height: 40px;
   font-size: 1.2rem;
-}
-
-.movie--rating {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* CSS below is for movie rating container */
-.circle--container {
-  display: flex;
-  gap: 5px;
 }
