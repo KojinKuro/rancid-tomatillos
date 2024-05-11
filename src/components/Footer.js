@@ -35,7 +35,7 @@ function Credit({ name, github, linkedin }) {
     <section className="credit">
       <div className="credit--name">{name}</div>
       <a href={`https://github.com/${github}`}>
-        <box-icon color="white" name="github" type="logo"></box-icon>
+        <box-icon color="white" type="logo" name="github"></box-icon>
         <span className="credit--text">@{github}</span>
       </a>
       <a href={`https://www.linkedin.com/in/${linkedin}/`}>
