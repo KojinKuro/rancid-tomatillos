@@ -18,6 +18,5 @@ function fetchData(endpoint, type) {
         throw new Error(`This is an HTTP error: The status is ${r.status}`);
       return r.json();
     })
-    .then((data) => data[type])
-    .catch((error) => console.log(error));
+    .then((data) => data[type]);
 }

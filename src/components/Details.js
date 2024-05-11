@@ -6,7 +6,7 @@ import { getMovie, getMovieVideos } from "../apiCalls";
 import "./Details.css";
 import MovieRating from "./MovieRating";
 
-export default function Details({ movie, onReturnHome }) {
+export default function Details({ movie, onReturnHome, addError }) {
   const bgStyle = {
     position: "fixed",
     left: 0,
@@ -28,20 +28,22 @@ export default function Details({ movie, onReturnHome }) {
   const [movieVideos, setMovieVideos] = useState([]);
   // get the video list from the server
   useEffect(() => {
-    getMovieVideos(movie.id).then((videos) => {
-      // if there is no videos, set to a fake trailer
-      if (!videos.length) {
-        setMovieVideos([
-          {
-            id: 19,
-            movie_id: 724495,
-            key: "5BZLz21ZS_Y",
-            site: "YouTube",
-            type: "Trailer",
-          },
-        ]);
-      } else setMovieVideos(videos);
-    });
+    getMovieVideos(movie.id)
+      .then((videos) => {
+        // if there is no videos, set to a fake trailer
+        if (!videos.length) {
+          setMovieVideos([
+            {
+              id: 19,
+              movie_id: 724495,
+              key: "5BZLz21ZS_Y",
+              site: "YouTube",
+              type: "Trailer",
+            },
+          ]);
+        } else setMovieVideos(videos);
+      })
+      .catch((error) => addError(`${error}`));
   }, [movie]);
 
   return (
@@ -51,14 +53,14 @@ export default function Details({ movie, onReturnHome }) {
         <button onClick={onReturnHome} className="return-home-button">
           <box-icon color="white" name="left-arrow-alt"></box-icon>Return Home
         </button>
-        <MovieDetail movie={movie} />
+        <MovieDetail addError={addError} movie={movie} />
         <MovieVideos movie={movie} videos={movieVideos} />
       </div>
     </>
   );
 }
 
-function MovieDetail({ movie }) {
+function MovieDetail({ movie, addError }) {
   const [movieInfo, setMovieInfo] = useState(movie);
   const {
     title,
@@ -75,7 +77,9 @@ function MovieDetail({ movie }) {
 
   // get the movie info from the server
   useEffect(() => {
-    getMovie(movie.id).then(setMovieInfo);
+    getMovie(movie.id)
+      .then(setMovieInfo)
+      .catch((error) => addError(`${error}`));
   }, [movie]);
 
   return (
