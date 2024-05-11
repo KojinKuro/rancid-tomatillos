@@ -1,19 +1,10 @@
-import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { getMovie } from "../apiCalls";
 import Circle from "./Circle";
 import "./Hero.css";
 
 export default function Hero({ movies, onMovieSelect }) {
-  const [moviesInfo, setMoviesInfo] = useState(movies);
-
-  useEffect(() => {
-    const heroMoviePromises = movies.map((movie) => getMovie(movie.id));
-    Promise.all(heroMoviePromises).then(setMoviesInfo);
-  }, [movies]);
-
-  const movieElements = moviesInfo.map((movie) => {
+  const movieElements = movies.map((movie) => {
     const {
       title,
       average_rating,
