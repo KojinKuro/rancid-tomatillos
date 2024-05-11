@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./SearchBar.css";
 
-export default function SearchBar({ movies }) {
+export default function SearchBar({ movies, onSelect }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
   const inputRef = useRef();
@@ -19,8 +19,17 @@ export default function SearchBar({ movies }) {
     );
   }, [searchTerm, movies]);
 
+  function handleSearchClick(movie) {
+    setSearchTerm("");
+    onSelect(movie);
+  }
+
   const filteredMoviesElements = filteredMovies
-    .map((movie) => <li key={movie.id}>{movie.title}</li>)
+    .map((movie) => (
+      <li key={movie.id} onClick={() => handleSearchClick(movie)}>
+        {movie.title}
+      </li>
+    ))
     .slice(0, 5);
 
   return (

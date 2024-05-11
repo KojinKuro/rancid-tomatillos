@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header movies={moviesData} />
+      <Header movies={moviesData} onMovieSelect={handleMovieSelect} />
       {selectedMovie ? (
         <Details movie={selectedMovie} onReturnHome={handleReturnHome} />
       ) : (
