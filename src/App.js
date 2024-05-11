@@ -6,10 +6,11 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Movies from "./components/Movies";
-import movieData from "./moviesData";
+// Old code for mock movie data
+// import movieData from "./moviesData";
 
 function App() {
-  const [moviesData, setMoviesData] = useState(movieData.movies);
+  const [moviesData, setMoviesData] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   // call to the server for the movie data
