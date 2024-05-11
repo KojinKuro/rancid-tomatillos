@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import { getMovies } from "./apiCalls";
 import Details from "./components/Details";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Movies from "./components/Movies";
-import movieData from "./moviesData";
+// Old code for mock movie data
+// import movieData from "./moviesData";
 
 function App() {
-  const [moviesData, setMoviesData] = useState(movieData.movies);
+  const [moviesData, setMoviesData] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+
+  // call to the server for the movie data
+  useEffect(() => {
+    getMovies().then(setMoviesData);
+  }, []);
 
   const handleMovieSelect = (movie) => {
     setSelectedMovie(movie);
@@ -21,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header movies={moviesData} />
+      <Header movies={moviesData} onMovieSelect={handleMovieSelect} />
       {selectedMovie ? (
         <Details movie={selectedMovie} onReturnHome={handleReturnHome} />
       ) : (

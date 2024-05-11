@@ -1,6 +1,8 @@
 .movie-details--container {
   padding: 150px 20px 20px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 30% 70%;
+
   gap: 10px;
 
   /* reset the CSS margins and fix rendering issues */
@@ -11,8 +13,6 @@
 }
 
 .movie-details {
-  width: 350px;
-
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -54,13 +54,6 @@
 }
 
 .react-player-container {
-  position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-
-  .movie-trailer-name {
-    font-weight: bold;
-    position: absolute;
-    top: -25px;
-  }
 }

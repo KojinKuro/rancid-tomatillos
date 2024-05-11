@@ -1,11 +1,29 @@
+import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { getMovie } from "../apiCalls";
 import Circle from "./Circle";
 import "./Hero.css";
 
 export default function Hero({ movies, onMovieSelect }) {
-  const movieElements = movies.map((movie) => {
-    const { title, average_rating, release_date, backdrop_path, id } = movie;
+  const [moviesInfo, setMoviesInfo] = useState(movies);
+
+  useEffect(() => {
+    const heroMoviePromises = movies.map((movie) => getMovie(movie.id));
+    Promise.all(heroMoviePromises).then(setMoviesInfo);
+  }, [movies]);
+
+  const movieElements = moviesInfo.map((movie) => {
+    const {
+      title,
+      average_rating,
+      release_date,
+      backdrop_path,
+      id,
+      overview = "",
+      runtime = 100,
+      genres = [],
+    } = movie;
 
     return (
       <div
@@ -16,19 +34,15 @@ export default function Hero({ movies, onMovieSelect }) {
         <div className="hero-content">
           <div className="hero-title">{title}</div>
           <div className="hero-details">
-            <span className="hero-rating">
+            <div className="hero-rating">
               <Circle percentage={100} size={"1.5rem"} />{" "}
               {average_rating.toFixed(1)}/10.0
-            </span>
-            <span className="hero-year">
-              {new Date(release_date).getFullYear()}
-            </span>
+            </div>
+            <div>{new Date(release_date).getFullYear()}</div>
+            <div>{runtime} min</div>
+            <div>{genres[0]}</div>
           </div>
-          <p className="hero-overview">
-            Some overview that is full of buzzwords to attempt to entice you to
-            watch this movie and so on and so forth. We'll add a realtagline
-            later.
-          </p>
+          <p className="hero-overview">{overview}</p>
           <button onClick={() => onMovieSelect(movie)}>
             <box-icon color="white" name="play-circle"></box-icon>More Info
           </button>
@@ -40,10 +54,11 @@ export default function Hero({ movies, onMovieSelect }) {
   return (
     <Carousel
       autoPlay={true}
+      autoFocus={true}
       interval={3000}
       showThumbs={false}
       showStatus={false}
-      infiniteLoop={true}
+      infiniteLoop={true} /* causes a bug where hero starts at the end*/
       useKeyboardArrows={true}
     >
       {movieElements}
