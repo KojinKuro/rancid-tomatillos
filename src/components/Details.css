@@ -1,77 +1,66 @@
-.movie-details {
-    position: relative;
-    padding-top: 20px; 
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    min-height: 100vh;
-    background-color: black;
-}
+.movie-details--container {
+  padding: 150px 20px 20px;
+  display: flex;
+  gap: 10px;
 
-.return-home {
-    position: absolute;
-    top: 80px;
-    left: 20px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.details-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    width: 50%;
-    max-width: 600px;
-    padding: 40px;
-    border-radius: 20px;
+  /* reset the CSS margins and fix rendering issues */
+  * {
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.8);
-    margin-top: 120px;
+    margin: 0;
+  }
 }
 
-.details-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.movie-details {
+  width: 350px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(8px);
-    opacity: 0.5;
-    z-index: -1;
+    max-width: 150px;
+  }
+
+  .movie-info td:first-child {
+    width: 120px;
+    color: #8d8d8d;
+  }
 }
 
-.details-poster {
-    width: 200px; 
-    height: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
+.return-home-button {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 10px 18px 10px 10px;
+  background-color: transparent;
+  color: white;
+
+  border: 1px solid white;
+  border-radius: 40px;
+
+  cursor: pointer;
+  z-index: 10;
+
+  transition: 0.5s ease;
+  &:hover {
+    border-color: #73cb3e;
+    background-color: #73cb3e;
+  }
 }
 
-.movie-info {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid grey;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
+.react-player-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
 
-.movie-rating {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    font-size: 20px;
-}
-
-.movie-rating span {
-    margin-left: 10px;
+  .movie-trailer-name {
+    font-weight: bold;
+    position: absolute;
+    top: -25px;
+  }
 }

@@ -40,7 +40,7 @@ export default function SearchBar({ movies }) {
         className="search-button"
         onClick={() => inputRef.current.focus()}
       >
-        🔍
+        <box-icon color="#73CB3E" name="search-alt-2"></box-icon>
       </button>
       {filteredMovies.length > 0 && (
         <ul className="search-results">{filteredMoviesElements}</ul>

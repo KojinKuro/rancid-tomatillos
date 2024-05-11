@@ -1,30 +1,87 @@
-import React from 'react';
-import Circle from './Circle';
-import './Details.css';
+import React from "react";
+import ReactPlayer from "react-player";
+import "./Details.css";
+import MovieRating from "./MovieRating";
 
 export default function Details({ movie, onReturnHome }) {
+  const bgStyle = {
+    position: "fixed",
+    left: 0,
+    right: 0,
+
+    backgroundImage: `url(${movie.backdrop_path})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    filter: "blur(7px)",
+
+    opacity: "25%",
+
+    zIndex: "1",
+    display: "block",
+    width: "100%",
+    height: "100vh",
+  };
+
   return (
-    <div className="movie-details">
-      <button onClick={onReturnHome} className="return-home">Return Home</button>
-      <div className="details-container">
-        <img src={movie.backdrop_path} alt={`${movie.title} backdrop`} className="details-backdrop" />
-        <img src={movie.poster_path} alt={`${movie.title} poster`} className="details-poster" />
-        <h1>{movie.title}</h1>
-        <div className="tagline"></div> Tagline: Movie info here soon 
-        <div className="movie-rating">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <Circle key={index} percentage={index < Math.round(movie.average_rating) ? 100 : 0} size="23px" />
-            ))}
-            <span>{movie.average_rating.toFixed(1)} / 10.0</span>
-        </div>
-        <div className="movie-info">
-          <p>Release Date: {new Date(movie.release_date).getFullYear()}</p>
-          <p>Length: 150min</p> {/* Placeholder */}
-          <p>Genre: Drama</p> {/* Placeholder */}
-          <p>Budget: $5000000</p> {/* Placeholder */}
-          <p>Revenue: $550000</p> {/* Placeholder */}
+    <>
+      <div className="background-image" style={bgStyle}></div>
+      <div className="movie-details--container">
+        <button onClick={onReturnHome} className="return-home-button">
+          <box-icon color="white" name="left-arrow-alt"></box-icon>Return Home
+        </button>
+        <MovieDetail movie={movie} />
+        <div className="react-player-container">
+          <div className="movie-trailer-name">{movie.title} trailer</div>
+          <ReactPlayer
+            width="100%"
+            height="100%"
+            url="https://www.youtube.com/watch?v=LXb3EKWsInQ"
+          />
         </div>
       </div>
-    </div>
+    </>
+  );
+}
+
+function MovieDetail({ movie }) {
+  const { title, poster_path, average_rating, release_date } = movie;
+
+  return (
+    <section className="movie-details">
+      <img src={poster_path} alt={`${title} poster`} />
+      <div>
+        <h1>{title}</h1>
+        <div>It’s a movie!</div>
+      </div>
+      <MovieRating rating={average_rating} />
+      <div>
+        Some overview that is full of buzzwords to attempt to entice you to
+        watch this movie! Explosions! Drama! True love! Robots! A cute dog
+      </div>
+
+      {/* Contains placeholder data */}
+      <table className="movie-info">
+        <tr>
+          <td>Release Date:</td>
+          <td>{new Date(release_date).getFullYear()}</td>
+        </tr>
+        <tr>
+          <td>Length:</td>
+          <td>150min</td>
+        </tr>
+        <tr>
+          <td>Genre:</td>
+          <td>Drama</td>
+        </tr>
+        <tr>
+          <td>Budget:</td>
+          <td>$5000000</td>
+        </tr>
+        <tr>
+          <td>Revenue:</td>
+          <td> $550000</td>
+        </tr>
+      </table>
+    </section>
   );
 }

@@ -3,7 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Circle from "./Circle";
 import "./Hero.css";
 
-export default function Hero({ movies }) {
+export default function Hero({ movies, onMovieSelect }) {
   const movieElements = movies.map((movie) => {
     const { title, average_rating, release_date, backdrop_path, id } = movie;
 
@@ -29,7 +29,7 @@ export default function Hero({ movies }) {
             watch this movie and so on and so forth. We'll add a realtagline
             later.
           </p>
-          <button>
+          <button onClick={() => onMovieSelect(movie)}>
             <box-icon color="white" name="play-circle"></box-icon>More Info
           </button>
         </div>
@@ -41,10 +41,10 @@ export default function Hero({ movies }) {
     <Carousel
       autoPlay={true}
       interval={3000}
-      showArrows={true}
       showThumbs={false}
       showStatus={false}
       infiniteLoop={true}
+      useKeyboardArrows={true}
     >
       {movieElements}
     </Carousel>
