@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./SearchBar.css";
+import PropTypes from 'prop-types';
+
 
 export default function SearchBar({ movies, onSelect }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -57,3 +59,11 @@ export default function SearchBar({ movies, onSelect }) {
     </div>
   );
 }
+
+SearchBar.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+  })).isRequired,
+  onSelect: PropTypes.func.isRequired,
+};

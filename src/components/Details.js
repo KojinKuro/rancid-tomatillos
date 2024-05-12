@@ -5,6 +5,8 @@ import { Carousel } from "react-responsive-carousel";
 import { getMovie, getMovieVideos } from "../apiCalls";
 import "./Details.css";
 import MovieRating from "./MovieRating";
+import PropTypes from 'prop-types';
+
 
 export default function Details({ movie, onReturnHome, addError }) {
   const bgStyle = {
@@ -153,3 +155,36 @@ function MovieVideos({ movie, videos }) {
     </Carousel>
   );
 }
+
+Details.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    backdrop_path: PropTypes.string,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+  onReturnHome: PropTypes.func.isRequired,
+  addError: PropTypes.func.isRequired,
+};
+
+MovieDetail.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    poster_path: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    tagline: PropTypes.string,
+    average_rating: PropTypes.number,
+    overview: PropTypes.string,
+  }).isRequired,
+  addError: PropTypes.func.isRequired,
+};
+
+MovieVideos.propTypes = {
+  videos: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    movie_id: PropTypes.number.isRequired,
+    key: PropTypes.string.isRequired,
+    site: PropTypes.string,
+    type: PropTypes.string,
+  })).isRequired,
+};
+

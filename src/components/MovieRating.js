@@ -1,5 +1,7 @@
 import Circle from "./Circle";
 import "./MovieRating.css";
+import PropTypes from 'prop-types';
+
 
 export default function MovieRating({ rating }) {
   const formattedRating = rating.toFixed(1);
@@ -25,3 +27,7 @@ export default function MovieRating({ rating }) {
     </div>
   );
 }
+
+MovieRating.propTypes = {
+  rating: PropTypes.number.isRequired
+};
