@@ -2,6 +2,8 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Circle from "./Circle";
 import "./Hero.css";
+import PropTypes from 'prop-types';
+
 
 export default function Hero({ movies, onMovieSelect }) {
   const movieElements = movies.map((movie) => {
@@ -55,4 +57,19 @@ export default function Hero({ movies, onMovieSelect }) {
       {movieElements}
     </Carousel>
   );
-}
+};
+
+Hero.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    average_rating: PropTypes.number.isRequired,
+    release_date: PropTypes.string.isRequired,
+    backdrop_path: PropTypes.string,
+    overview: PropTypes.string,
+    runtime: PropTypes.number,
+    genres: PropTypes.arrayOf(PropTypes.string)
+  })).isRequired,
+  onMovieSelect: PropTypes.func.isRequired,
+};
+

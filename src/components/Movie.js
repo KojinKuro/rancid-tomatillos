@@ -1,5 +1,7 @@
 import "./Movie.css";
 import MovieRating from "./MovieRating";
+import PropTypes from 'prop-types';
+
 
 export default function Movie({ movie, onSelect }) {
   const { title, poster_path, average_rating } = movie;
@@ -17,3 +19,12 @@ export default function Movie({ movie, onSelect }) {
     </section>
   );
 }
+
+Movie.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    poster_path: PropTypes.string.isRequired,
+    average_rating: PropTypes.number.isRequired
+  }).isRequired,
+  onSelect: PropTypes.func.isRequired,
+};
