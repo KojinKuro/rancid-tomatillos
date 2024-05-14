@@ -75,6 +75,10 @@ export default function MoviePage({ addError }) {
   );
 }
 
+MoviePage.propTypes = {
+  addError: PropTypes.func.isRequired,
+};
+
 function MovieDetail({ movie }) {
   const {
     title = "",
@@ -134,6 +138,21 @@ function MovieDetail({ movie }) {
   );
 }
 
+MovieDetail.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    poster_path: PropTypes.string,
+    average_rating: PropTypes.number,
+    release_date: PropTypes.string,
+    budget: PropTypes.number,
+    genres: PropTypes.arrayOf(PropTypes.string),
+    overview: PropTypes.string,
+    revenue: PropTypes.number,
+    runtime: PropTypes.number,
+    tagline: PropTypes.string,
+  }).isRequired,
+};
+
 function MovieVideos({ videos }) {
   const videoElements = videos.map((video) => {
     return (
@@ -160,3 +179,9 @@ function MovieVideos({ videos }) {
     </Carousel>
   );
 }
+
+MovieVideos.propTypes = {
+  videos: PropTypes.arrayOf(
+    PropTypes.shape({ id: PropTypes.number, key: PropTypes.string })
+  ).isRequired,
+};

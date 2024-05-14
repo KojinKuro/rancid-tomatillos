@@ -43,12 +43,10 @@ function App() {
     setErrors((prevErrors) => [...prevErrors, error]);
   };
 
-  console.log(moviesData);
-
   return (
     <div className="App">
       <ErrorHandler errors={errors} />
-      <Header movies={moviesData} />
+      <Header movies={moviesData}></Header>
       <Routes>
         <Route
           path="/"

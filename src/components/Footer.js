@@ -12,7 +12,7 @@ export default function Footer() {
         </p>
       </article>
       <div className="footer--credits">
-        <div className="footer--credits-by">Coded & desgined by</div>
+        <div className="footer--credits-by">Coded & designed by</div>
         <section className="credit--container">
           <Credit
             name="Charles Kwang"

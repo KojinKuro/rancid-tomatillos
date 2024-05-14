@@ -31,5 +31,6 @@ Movie.propTypes = {
     title: PropTypes.string.isRequired,
     poster_path: PropTypes.string.isRequired,
     average_rating: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
   }).isRequired,
 };

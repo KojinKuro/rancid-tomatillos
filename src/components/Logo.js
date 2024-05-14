@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./Logo.css";
 
 export default function Logo({ size = "2.5rem" }) {
@@ -13,3 +14,7 @@ export default function Logo({ size = "2.5rem" }) {
     </div>
   );
 }
+
+Logo.propTypes = {
+  size: PropTypes.string,
+};

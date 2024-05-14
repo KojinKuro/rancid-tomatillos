@@ -62,7 +62,7 @@ export default function Hero({ heroMovies }) {
 }
 
 Hero.propTypes = {
-  movies: PropTypes.arrayOf(
+  heroMovies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,

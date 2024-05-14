@@ -1,7 +1,6 @@
+import PropTypes from "prop-types";
 import Circle from "./Circle";
 import "./MovieRating.css";
-import PropTypes from 'prop-types';
-
 
 export default function MovieRating({ rating }) {
   const formattedRating = rating.toFixed(1);
@@ -29,5 +28,5 @@ export default function MovieRating({ rating }) {
 }
 
 MovieRating.propTypes = {
-  rating: PropTypes.number.isRequired
+  rating: PropTypes.number.isRequired,
 };
