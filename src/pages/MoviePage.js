@@ -16,7 +16,7 @@ export default function MoviePage({ addError }) {
     getMovie(movieId)
       .then(setMovie)
       .catch((error) => addError(`${error}`));
-  }, []);
+  }, [movieId]);
 
   // get the video list from the server
   useEffect(() => {
