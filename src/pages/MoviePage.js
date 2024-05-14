@@ -1,16 +1,18 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { Carousel } from "react-responsive-carousel";
 import { Link, useParams } from "react-router-dom";
+import { ErrorContext } from "../App";
 import { getMovie, getMovieVideos } from "../apiCalls";
 import MovieRating from "../components/MovieRating";
 import "./MoviePage.css";
 
-export default function MoviePage({ addError }) {
+export default function MoviePage() {
   const [movie, setMovie] = useState({});
   const [movieVideos, setMovieVideos] = useState([]);
   const { movieId } = useParams();
+  const { addError } = useContext(ErrorContext);
 
   useEffect(() => {
     getMovie(movieId)
@@ -74,10 +76,6 @@ export default function MoviePage({ addError }) {
     </>
   );
 }
-
-MoviePage.propTypes = {
-  addError: PropTypes.func.isRequired,
-};
 
 function MovieDetail({ movie }) {
   const {
