@@ -1,31 +1,75 @@
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Circle from "./Circle";
 import "./Hero.css";
+import PropTypes from 'prop-types';
 
-export default function Hero({ movie }) {
-  const { title, average_rating, release_date, backdrop_path } = movie;
+
+export default function Hero({ movies, onMovieSelect }) {
+  const movieElements = movies.map((movie) => {
+    const {
+      title,
+      average_rating,
+      release_date,
+      backdrop_path,
+      id,
+      overview = "",
+      runtime = 100,
+      genres = [],
+    } = movie;
+
+    return (
+      <div
+        key={id}
+        className="hero"
+        style={{ backgroundImage: `url(${backdrop_path})` }}
+      >
+        <div className="hero-content">
+          <div className="hero-title">{title}</div>
+          <div className="hero-details">
+            <div className="hero-rating">
+              <Circle percentage={100} size={"1.5rem"} />{" "}
+              {average_rating.toFixed(1)}/10.0
+            </div>
+            <div>{new Date(release_date).getFullYear()}</div>
+            <div>{runtime} min</div>
+            <div>{genres[0]}</div>
+          </div>
+          <p className="hero-overview">{overview}</p>
+          <button onClick={() => onMovieSelect(movie)}>
+            <box-icon color="white" name="play-circle"></box-icon>More Info
+          </button>
+        </div>
+      </div>
+    );
+  });
 
   return (
-    <div className="hero" style={{ backgroundImage: `url(${backdrop_path})` }}>
-      <div className="hero-content">
-        <h1 className="hero-title">{title}</h1>
-        <div className="hero-details">
-          <span className="hero-rating">
-            <Circle percentage={100} size={"1.5rem"} />{" "}
-            {(average_rating / 2).toFixed(1)}/5.0
-          </span>
-          <span className="hero-year">
-            {new Date(release_date).getFullYear()}
-          </span>
-        </div>
-        <p className="hero-overview">
-          Some overview that is full of buzzwords to attempt to entice you to
-          watch this movie and so on and so forth. We'll add a realtagline
-          later.
-        </p>
-        <button>
-          <box-icon color="white" name="play-circle"></box-icon>More Info
-        </button>
-      </div>
-    </div>
+    <Carousel
+      autoPlay={true}
+      autoFocus={true}
+      interval={3000}
+      showThumbs={false}
+      showStatus={false}
+      infiniteLoop={true} /* causes a bug where hero starts at the end*/
+      useKeyboardArrows={true}
+    >
+      {movieElements}
+    </Carousel>
   );
-}
+};
+
+Hero.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    average_rating: PropTypes.number.isRequired,
+    release_date: PropTypes.string.isRequired,
+    backdrop_path: PropTypes.string,
+    overview: PropTypes.string,
+    runtime: PropTypes.number,
+    genres: PropTypes.arrayOf(PropTypes.string)
+  })).isRequired,
+  onMovieSelect: PropTypes.func.isRequired,
+};
+
