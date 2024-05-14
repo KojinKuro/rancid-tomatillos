@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { getMovie, getMovies } from "./apiCalls";
-import Details from "./components/Details";
 import ErrorHandler from "./components/ErrorHandler";
-import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Movies from "./components/Movies";
+import HomePage from "./pages/HomePage";
+import MoviePage from "./pages/MoviePage";
 // Old code for mock movie data
 // import movieData from "./moviesData";
 
 function App() {
   const [moviesData, setMoviesData] = useState([]);
   const [heroMovies, setHeroMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
   const [errors, setErrors] = useState([]);
 
   // call to the server for the movie data
@@ -26,6 +24,7 @@ function App() {
   useEffect(() => {
     const topMovies = moviesData.slice(0, 5);
     const heroMoviePromises = topMovies.map((movie) => getMovie(movie.id));
+
     Promise.all(heroMoviePromises)
       .then(setHeroMovies)
       .catch((error) => addError(`${error}`));
@@ -44,31 +43,19 @@ function App() {
     setErrors((prevErrors) => [...prevErrors, error]);
   };
 
-  const handleMovieSelect = (movie) => {
-    setSelectedMovie(movie);
-  };
-
-  const handleReturnHome = () => {
-    setSelectedMovie(null);
-  };
+  console.log(moviesData);
 
   return (
     <div className="App">
       <ErrorHandler errors={errors} />
-      <Header movies={moviesData} onMovieSelect={handleMovieSelect} />
-      {selectedMovie ? (
-        <Details
-          movie={selectedMovie}
-          addError={addError}
-          onReturnHome={handleReturnHome}
+      <Header movies={moviesData} />
+      <Routes>
+        <Route
+          path="/"
+          element={<HomePage moviesData={moviesData} heroMovies={heroMovies} />}
         />
-      ) : (
-        <>
-          <Hero movies={heroMovies} onMovieSelect={handleMovieSelect} />
-          <Movies movies={moviesData} onMovieSelect={handleMovieSelect} />
-        </>
-      )}
-      {!selectedMovie ? <Footer /> : ""}
+        <Route path="/:movieId" element={<MoviePage addError={addError} />} />
+      </Routes>
     </div>
   );
 }
