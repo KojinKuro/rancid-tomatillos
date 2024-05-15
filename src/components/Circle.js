@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./Circle.css";
 
 export default function Circle({ percentage = 100, size = "23px" }) {
@@ -8,3 +9,8 @@ export default function Circle({ percentage = 100, size = "23px" }) {
 
   return <div style={style} className={`circle${percentage}`}></div>;
 }
+
+Circle.propTypes = {
+  percentage: PropTypes.number,
+  size: PropTypes.string,
+};

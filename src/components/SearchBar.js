@@ -1,9 +1,9 @@
+import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import "./SearchBar.css";
-import PropTypes from 'prop-types';
 
-
-export default function SearchBar({ movies, onSelect }) {
+export default function SearchBar({ movies }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
   const inputRef = useRef();
@@ -15,22 +15,21 @@ export default function SearchBar({ movies, onSelect }) {
     }
 
     setFilteredMovies(
-      movies.filter((movie) =>
-        movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      movies
+        .sort((a, b) => a.title.localeCompare(b.title))
+        .filter((movie) =>
+          movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+        )
     );
   }, [searchTerm, movies]);
 
-  function handleSearchClick(movie) {
-    setSearchTerm("");
-    onSelect(movie);
-  }
-
   const filteredMoviesElements = filteredMovies
     .map((movie) => (
-      <li key={movie.id} onClick={() => handleSearchClick(movie)}>
-        {movie.title}
-      </li>
+      <Link to={`/${movie.id}`}>
+        <li key={movie.id} onClick={() => setSearchTerm("")}>
+          {movie.title}
+        </li>
+      </Link>
     ))
     .slice(0, 5);
 
@@ -61,9 +60,12 @@ export default function SearchBar({ movies, onSelect }) {
 }
 
 SearchBar.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-  })).isRequired,
-  onSelect: PropTypes.func.isRequired,
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      poster_path: PropTypes.string,
+      average_rating: PropTypes.number,
+    })
+  ).isRequired,
 };

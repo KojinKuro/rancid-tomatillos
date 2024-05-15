@@ -1,12 +1,12 @@
+import PropTypes from "prop-types";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Link } from "react-router-dom";
 import Circle from "./Circle";
 import "./Hero.css";
-import PropTypes from 'prop-types';
 
-
-export default function Hero({ movies, onMovieSelect }) {
-  const movieElements = movies.map((movie) => {
+export default function Hero({ heroMovies }) {
+  const movieElements = heroMovies.map((movie) => {
     const {
       title,
       average_rating,
@@ -36,9 +36,11 @@ export default function Hero({ movies, onMovieSelect }) {
             <div>{genres[0]}</div>
           </div>
           <p className="hero-overview">{overview}</p>
-          <button onClick={() => onMovieSelect(movie)}>
-            <box-icon color="white" name="play-circle"></box-icon>More Info
-          </button>
+          <Link to={`/${id}`}>
+            <button>
+              <box-icon color="white" name="play-circle"></box-icon>More Info
+            </button>
+          </Link>
         </div>
       </div>
     );
@@ -57,19 +59,19 @@ export default function Hero({ movies, onMovieSelect }) {
       {movieElements}
     </Carousel>
   );
-};
+}
 
 Hero.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    average_rating: PropTypes.number.isRequired,
-    release_date: PropTypes.string.isRequired,
-    backdrop_path: PropTypes.string,
-    overview: PropTypes.string,
-    runtime: PropTypes.number,
-    genres: PropTypes.arrayOf(PropTypes.string)
-  })).isRequired,
-  onMovieSelect: PropTypes.func.isRequired,
+  heroMovies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      average_rating: PropTypes.number.isRequired,
+      release_date: PropTypes.string.isRequired,
+      backdrop_path: PropTypes.string,
+      overview: PropTypes.string,
+      runtime: PropTypes.number,
+      genres: PropTypes.arrayOf(PropTypes.string),
+    })
+  ).isRequired,
 };
-

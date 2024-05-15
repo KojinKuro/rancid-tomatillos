@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./ErrorHandler.css";
 
 export default function ErrorHandler({ errors }) {
@@ -7,3 +8,7 @@ export default function ErrorHandler({ errors }) {
 
   return <div className="error-container">{errorElements}</div>;
 }
+
+Error.propTypes = {
+  errors: PropTypes.arrayOf(PropTypes.string),
+};

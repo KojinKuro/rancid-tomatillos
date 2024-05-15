@@ -1,35 +1,30 @@
-import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import React, { useContext, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { Carousel } from "react-responsive-carousel";
-
+import { Link, useParams } from "react-router-dom";
+import { ErrorContext } from "../App";
 import { getMovie, getMovieVideos } from "../apiCalls";
-import "./Details.css";
-import MovieRating from "./MovieRating";
-import PropTypes from 'prop-types';
+import MovieRating from "../components/MovieRating";
+import "./MoviePage.css";
 
-
-export default function Details({ movie, onReturnHome, addError }) {
-  const bgStyle = {
-    position: "fixed",
-    left: 0,
-    right: 0,
-
-    backgroundImage: `url(${movie.backdrop_path})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    filter: "blur(7px)",
-
-    opacity: "25%",
-
-    zIndex: "1",
-    display: "block",
-    width: "100%",
-    height: "100vh",
-  };
-
+export default function MoviePage() {
+  const [movie, setMovie] = useState({});
   const [movieVideos, setMovieVideos] = useState([]);
+  const { movieId } = useParams();
+  const { addError } = useContext(ErrorContext);
+
+  useEffect(() => {
+    getMovie(movieId)
+      .then(setMovie)
+      .catch((error) => addError(`${error}`));
+  }, [movieId]);
+
   // get the video list from the server
   useEffect(() => {
+    // will get if there is no movie set
+    if (!Object.keys(movie).length) return;
+
     getMovieVideos(movie.id)
       .then((videos) => {
         // if there is no videos, set to a fake trailer
@@ -48,41 +43,53 @@ export default function Details({ movie, onReturnHome, addError }) {
       .catch((error) => addError(`${error}`));
   }, [movie]);
 
+  const bgStyle = {
+    position: "fixed",
+    left: 0,
+    right: 0,
+
+    backgroundImage: movie ? `url(${movie.backdrop_path})` : "",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    filter: "blur(7px)",
+
+    opacity: "25%",
+
+    zIndex: "1",
+    display: "block",
+    width: "100%",
+    height: "100vh",
+  };
+
   return (
     <>
       <div className="background-image" style={bgStyle}></div>
-      <div className="movie-details--container">
-        <button onClick={onReturnHome} className="return-home-button">
+      <Link to="/">
+        <button className="return-home-button">
           <box-icon color="white" name="left-arrow-alt"></box-icon>Return Home
         </button>
-        <MovieDetail addError={addError} movie={movie} />
-        <MovieVideos movie={movie} videos={movieVideos} />
+      </Link>
+      <div className="movie-details--container">
+        <MovieDetail movie={movie} />
+        <MovieVideos videos={movieVideos} />
       </div>
     </>
   );
 }
 
-function MovieDetail({ movie, addError }) {
-  const [movieInfo, setMovieInfo] = useState(movie);
+function MovieDetail({ movie }) {
   const {
-    title,
-    poster_path,
-    average_rating,
-    release_date,
+    title = "",
+    poster_path = "",
+    average_rating = 0,
+    release_date = "2020-10-15",
     budget = 0,
     genres = [""],
     overview = "",
     revenue = 0,
     runtime = 0,
     tagline = "",
-  } = movieInfo;
-
-  // get the movie info from the server
-  useEffect(() => {
-    getMovie(movie.id)
-      .then(setMovieInfo)
-      .catch((error) => addError(`${error}`));
-  }, [movie]);
+  } = movie;
 
   return (
     <section className="movie-details">
@@ -129,7 +136,22 @@ function MovieDetail({ movie, addError }) {
   );
 }
 
-function MovieVideos({ movie, videos }) {
+MovieDetail.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    poster_path: PropTypes.string,
+    average_rating: PropTypes.number,
+    release_date: PropTypes.string,
+    budget: PropTypes.number,
+    genres: PropTypes.arrayOf(PropTypes.string),
+    overview: PropTypes.string,
+    revenue: PropTypes.number,
+    runtime: PropTypes.number,
+    tagline: PropTypes.string,
+  }).isRequired,
+};
+
+function MovieVideos({ videos }) {
   const videoElements = videos.map((video) => {
     return (
       <div className="react-player-container" key={video.id}>
@@ -156,35 +178,8 @@ function MovieVideos({ movie, videos }) {
   );
 }
 
-Details.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    backdrop_path: PropTypes.string,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
-  onReturnHome: PropTypes.func.isRequired,
-  addError: PropTypes.func.isRequired,
-};
-
-MovieDetail.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    poster_path: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    tagline: PropTypes.string,
-    average_rating: PropTypes.number,
-    overview: PropTypes.string,
-  }).isRequired,
-  addError: PropTypes.func.isRequired,
-};
-
 MovieVideos.propTypes = {
-  videos: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    movie_id: PropTypes.number.isRequired,
-    key: PropTypes.string.isRequired,
-    site: PropTypes.string,
-    type: PropTypes.string,
-  })).isRequired,
+  videos: PropTypes.arrayOf(
+    PropTypes.shape({ id: PropTypes.number, key: PropTypes.string })
+  ).isRequired,
 };
-
