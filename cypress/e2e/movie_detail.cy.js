@@ -1,5 +1,14 @@
+import movieData from "../../src/moviesData";
+
 describe("template spec", () => {
-  it("passes", () => {
+  beforeEach(() => {
+    cy.intercept("https://rancid-tomatillos.herokuapp.com/api/v2/movies", {
+      method: "GET",
+      body: movieData,
+    });
+  });
+
+  it("Should be able to see details of movie id 694919", () => {
     cy.intercept(
       "https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919",
       {
@@ -60,7 +69,83 @@ describe("template spec", () => {
 
     cy.get(".react-player-container").should("have.length", 1);
 
-    // test last movie page
-    // cy.visit("/760104");
+    cy.get(".return-home-button")
+      .click()
+      .url()
+      .should("include", `${Cypress.config("baseUrl")}/`);
+  });
+
+  it("Should be able to see details of movie id 585244", () => {
+    cy.intercept(
+      "https://rancid-tomatillos.herokuapp.com/api/v2/movies/585244",
+      {
+        method: "GET",
+        body: {
+          movie: {
+            id: 585244,
+            title: "I Still Believe",
+            poster_path:
+              "https://image.tmdb.org/t/p/original//dqA2FCzz4OMmXLitKopzf476RVB.jpg",
+            backdrop_path:
+              "https://image.tmdb.org/t/p/original//21Q8bzu10YF9i4O5amBkJBombYo.jpg",
+            release_date: "2020-03-12",
+            overview:
+              "The true-life story of Christian music star Jeremy Camp and his journey of love and loss that looks to prove there is always hope.",
+            average_rating: 3.8333333333333335,
+            genres: ["Music", "Drama", "Romance"],
+            budget: 12000000,
+            revenue: 16069730,
+            runtime: 115,
+            tagline: "One love can change your life.",
+          },
+        },
+      }
+    );
+
+    cy.intercept(
+      "https://rancid-tomatillos.herokuapp.com/api/v2/movies/585244/videos",
+      {
+        method: "GET",
+        body: {
+          videos: [
+            {
+              id: 1,
+              movie_id: 585244,
+              key: "YnxHyBbYwQQ",
+              site: "YouTube",
+              type: "Trailer",
+            },
+            {
+              id: 2,
+              movie_id: 585244,
+              key: "7Za7-Q8YURM",
+              site: "YouTube",
+              type: "Trailer",
+            },
+          ],
+        },
+      }
+    );
+
+    // test first movie
+    cy.visit("/585244");
+    cy.getTestId("movie-title").contains("I Still Believe");
+    cy.getTestId("movie-tagline").contains("One love can change your life");
+    cy.getTestId("movie-rating").contains("3.8 / 10");
+    cy.getTestId("movie-overview").contains(
+      "The true-life story of Christian music star Jeremy Camp and his journey of love and loss that looks to prove there is always hope."
+    );
+    cy.getTestId("movie-release").contains("2020");
+    cy.getTestId("movie-length").contains("115");
+    cy.getTestId("movie-genres").contains("Music, Drama, Romance");
+    cy.getTestId("movie-budget").contains("12000000");
+    cy.getTestId("movie-revenue").contains("16069730");
+
+    cy.get(".react-player-container").should("have.length", 2);
+
+    cy.get(".return-home-button")
+      .click()
+      .url()
+      .should("include", `${Cypress.config("baseUrl")}/`);
   });
 });
