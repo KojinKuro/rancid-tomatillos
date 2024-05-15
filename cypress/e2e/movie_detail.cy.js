@@ -55,6 +55,11 @@ describe("template spec", () => {
 
     // navigate to the first mock movie
     cy.visit("/694919");
+
+    // should have a header and no footer
+    cy.get("header");
+    cy.get("footer").should("not.exist");
+
     cy.getTestId("movie-title").contains("Money Plane");
     cy.getTestId("movie-tagline").contains("The heist of the century");
     cy.getTestId("movie-rating").contains("6.7 / 10");
@@ -129,6 +134,11 @@ describe("template spec", () => {
 
     // navigate to the last mock movie
     cy.visit("/585244");
+
+    // should have a header and no footer
+    cy.get("header");
+    cy.get("footer").should("not.exist");
+
     cy.getTestId("movie-title").contains("I Still Believe");
     cy.getTestId("movie-tagline").contains("One love can change your life");
     cy.getTestId("movie-rating").contains("3.8 / 10");
