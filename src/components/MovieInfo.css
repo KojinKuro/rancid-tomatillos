@@ -1,0 +1,13 @@
+.movie-info--container {
+  padding: 150px 20px 20px;
+  display: grid;
+  grid-template-columns: 30% 70%;
+
+  gap: 10px;
+
+  /* reset the CSS margins and fix rendering issues */
+  * {
+    z-index: 1;
+    margin: 0;
+  }
+}

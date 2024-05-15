@@ -1,0 +1,15 @@
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  img {
+    width: 100%;
+    max-width: 150px;
+  }
+
+  .movie-info td:first-child {
+    width: 120px;
+    color: #8d8d8d;
+  }
+}

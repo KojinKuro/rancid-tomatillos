@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { getMovie, getMovies } from "./apiCalls";
+import { getMovies } from "./apiCalls";
 import ErrorHandler from "./components/ErrorHandler";
 import Header from "./components/Header";
 import Logo from "./components/Logo";
