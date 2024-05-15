@@ -31,11 +31,11 @@ export default function MoviePage() {
         if (!videos.length) {
           setMovieVideos([
             {
-              id: 19,
-              movie_id: 724495,
+              id: 1,
+              movie_id: movie.id,
               key: "5BZLz21ZS_Y",
               site: "YouTube",
-              type: "Trailer",
+              type: "Error",
             },
           ]);
         } else setMovieVideos(videos);
@@ -95,13 +95,12 @@ function MovieDetail({ movie }) {
     <section className="movie-details">
       <img src={poster_path} alt={`${title} poster`} />
       <div>
-        <h1>{title}</h1>
-        <div>{tagline}</div>
+        <h1 data-test-id="movie-title">{title}</h1>
+        <div data-test-id="movie-tagline">{tagline}</div>
       </div>
-      <MovieRating rating={average_rating} />
-      <div>{overview}</div>
+      <MovieRating data-test-id="movie-rating" rating={average_rating} />
+      <div data-test-id="movie-overview">{overview}</div>
 
-      {/* Contains placeholder data */}
       <table className="movie-info">
         <thead>
           <tr hidden>
@@ -110,23 +109,23 @@ function MovieDetail({ movie }) {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="movie-release">
             <td>Release Date:</td>
             <td>{new Date(release_date).getFullYear()}</td>
           </tr>
-          <tr>
+          <tr data-test-id="movie-length">
             <td>Length:</td>
             <td>{runtime}min</td>
           </tr>
-          <tr>
-            <td>Genre:</td>
+          <tr data-test-id="movie-genres">
+            <td>Genre{genres.length > 1 ? "s" : ""}:</td>
             <td>{genres.join(", ")}</td>
           </tr>
-          <tr>
+          <tr data-test-id="movie-budget">
             <td>Budget:</td>
             <td>${budget}</td>
           </tr>
-          <tr>
+          <tr data-test-id="movie-revenue">
             <td>Revenue:</td>
             <td>${revenue}</td>
           </tr>
@@ -168,7 +167,6 @@ function MovieVideos({ videos }) {
     <Carousel
       showThumbs={false}
       showStatus={false}
-      infiniteLoop={true}
       showIndicators={false}
       useKeyboardArrows={true}
       emulateTouch={true}
