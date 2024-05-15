@@ -59,6 +59,11 @@
     gap: 5px;
   }
 
+  /* remove styling on button link */
+  a {
+    text-decoration: none;
+  }
+
   button {
     display: flex;
     align-items: center;
