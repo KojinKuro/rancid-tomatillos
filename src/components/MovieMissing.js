@@ -11,7 +11,7 @@ export default function MovieMissing() {
   }, [countdown]);
 
   return (
-    <div className="movie-missing--container">
+    <div className="movie-missing--container" data-test-id="movie-missing">
       <h2 className="movie-missing--title">Whoops!</h2>
       <p className="movie-missing--message">
         Looks like you're trying to access a movie that doesn't exist!
