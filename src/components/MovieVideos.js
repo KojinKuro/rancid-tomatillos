@@ -57,7 +57,5 @@ export default function MovieVideos({ movieId }) {
 }
 
 MovieVideos.propTypes = {
-  videos: PropTypes.arrayOf(
-    PropTypes.shape({ id: PropTypes.number, key: PropTypes.string })
-  ).isRequired,
+  movieId: PropTypes.number,
 };

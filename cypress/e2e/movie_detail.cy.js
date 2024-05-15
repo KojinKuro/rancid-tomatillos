@@ -53,7 +53,7 @@ describe("template spec", () => {
       }
     );
 
-    // test first movie
+    // navigate to the first mock movie
     cy.visit("/694919");
     cy.getTestId("movie-title").contains("Money Plane");
     cy.getTestId("movie-tagline").contains("The heist of the century");
@@ -127,7 +127,7 @@ describe("template spec", () => {
       }
     );
 
-    // test first movie
+    // navigate to the last mock movie
     cy.visit("/585244");
     cy.getTestId("movie-title").contains("I Still Believe");
     cy.getTestId("movie-tagline").contains("One love can change your life");
