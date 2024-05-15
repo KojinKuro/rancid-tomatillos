@@ -1,0 +1,16 @@
+.movie-missing--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+}
+
+.movie-missing--title {
+  font-size: 2rem;
+}
+
+.movie-missing--message {
+  max-width: 500px;
+}

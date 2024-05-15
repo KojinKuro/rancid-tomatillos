@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Circle from "./Circle";
 import "./MovieRating.css";
 
-export default function MovieRating({ rating }) {
+export default function MovieRating({ rating, ...props }) {
   const formattedRating = rating.toFixed(1);
   let ratingElements = [];
 
@@ -20,7 +20,7 @@ export default function MovieRating({ rating }) {
   }
 
   return (
-    <div className="movie--rating">
+    <div className="movie--rating" {...props}>
       <span className="circle--container">{ratingElements}</span>
       <span>{formattedRating} / 10.0</span>
     </div>

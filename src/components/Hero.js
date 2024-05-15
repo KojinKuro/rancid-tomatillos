@@ -53,7 +53,6 @@ export default function Hero({ heroMovies }) {
       interval={3000}
       showThumbs={false}
       showStatus={false}
-      infiniteLoop={true} /* causes a bug where hero starts at the end*/
       useKeyboardArrows={true}
     >
       {movieElements}

@@ -1,49 +1,22 @@
-import PropTypes from "prop-types";
-import React, { useContext, useEffect, useState } from "react";
-import ReactPlayer from "react-player";
-import { Carousel } from "react-responsive-carousel";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ErrorContext } from "../App";
-import { getMovie, getMovieVideos } from "../apiCalls";
-import MovieRating from "../components/MovieRating";
+import { getMovie } from "../apiCalls";
+import MovieInfo from "../components/MovieInfo";
+import MovieMissing from "../components/MovieMissing";
 import "./MoviePage.css";
 
 export default function MoviePage() {
   const [movie, setMovie] = useState({});
-  const [movieVideos, setMovieVideos] = useState([]);
+  const [movieError, setMovieError] = useState(false);
   const { movieId } = useParams();
-  const { addError } = useContext(ErrorContext);
 
   useEffect(() => {
     getMovie(movieId)
-      .then(setMovie)
-      .catch((error) => addError(`${error}`));
+      .then((movie) => setMovie(movie))
+      .catch(() => setMovieError(true));
   }, [movieId]);
 
-  // get the video list from the server
-  useEffect(() => {
-    // will get if there is no movie set
-    if (!Object.keys(movie).length) return;
-
-    getMovieVideos(movie.id)
-      .then((videos) => {
-        // if there is no videos, set to a fake trailer
-        if (!videos.length) {
-          setMovieVideos([
-            {
-              id: 19,
-              movie_id: 724495,
-              key: "5BZLz21ZS_Y",
-              site: "YouTube",
-              type: "Trailer",
-            },
-          ]);
-        } else setMovieVideos(videos);
-      })
-      .catch((error) => addError(`${error}`));
-  }, [movie]);
-
-  const bgStyle = {
+  const backgroundStyle = {
     position: "fixed",
     left: 0,
     right: 0,
@@ -63,123 +36,14 @@ export default function MoviePage() {
 
   return (
     <>
-      <div className="background-image" style={bgStyle}></div>
-      <Link to="/">
+      <div className="background-image" style={backgroundStyle} />
+      <Link to="/" data-test-id="return-home-button">
         <button className="return-home-button">
-          <box-icon color="white" name="left-arrow-alt"></box-icon>Return Home
+          <box-icon color="white" name="left-arrow-alt" />
+          Return Home
         </button>
       </Link>
-      <div className="movie-details--container">
-        <MovieDetail movie={movie} />
-        <MovieVideos videos={movieVideos} />
-      </div>
+      {!movieError ? <MovieInfo movie={movie} /> : <MovieMissing />}
     </>
   );
 }
-
-function MovieDetail({ movie }) {
-  const {
-    title = "",
-    poster_path = "",
-    average_rating = 0,
-    release_date = "2020-10-15",
-    budget = 0,
-    genres = [""],
-    overview = "",
-    revenue = 0,
-    runtime = 0,
-    tagline = "",
-  } = movie;
-
-  return (
-    <section className="movie-details">
-      <img src={poster_path} alt={`${title} poster`} />
-      <div>
-        <h1>{title}</h1>
-        <div>{tagline}</div>
-      </div>
-      <MovieRating rating={average_rating} />
-      <div>{overview}</div>
-
-      {/* Contains placeholder data */}
-      <table className="movie-info">
-        <thead>
-          <tr hidden>
-            <th>Categories</th>
-            <th>Descriptions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Release Date:</td>
-            <td>{new Date(release_date).getFullYear()}</td>
-          </tr>
-          <tr>
-            <td>Length:</td>
-            <td>{runtime}min</td>
-          </tr>
-          <tr>
-            <td>Genre:</td>
-            <td>{genres.join(", ")}</td>
-          </tr>
-          <tr>
-            <td>Budget:</td>
-            <td>${budget}</td>
-          </tr>
-          <tr>
-            <td>Revenue:</td>
-            <td>${revenue}</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  );
-}
-
-MovieDetail.propTypes = {
-  movie: PropTypes.shape({
-    title: PropTypes.string,
-    poster_path: PropTypes.string,
-    average_rating: PropTypes.number,
-    release_date: PropTypes.string,
-    budget: PropTypes.number,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    overview: PropTypes.string,
-    revenue: PropTypes.number,
-    runtime: PropTypes.number,
-    tagline: PropTypes.string,
-  }).isRequired,
-};
-
-function MovieVideos({ videos }) {
-  const videoElements = videos.map((video) => {
-    return (
-      <div className="react-player-container" key={video.id}>
-        <ReactPlayer
-          width={"100%"}
-          height={"100%"}
-          url={`https://www.youtube.com/watch?v=${video.key}`}
-        />
-      </div>
-    );
-  });
-
-  return (
-    <Carousel
-      showThumbs={false}
-      showStatus={false}
-      infiniteLoop={true}
-      showIndicators={false}
-      useKeyboardArrows={true}
-      emulateTouch={true}
-    >
-      {videoElements}
-    </Carousel>
-  );
-}
-
-MovieVideos.propTypes = {
-  videos: PropTypes.arrayOf(
-    PropTypes.shape({ id: PropTypes.number, key: PropTypes.string })
-  ).isRequired,
-};

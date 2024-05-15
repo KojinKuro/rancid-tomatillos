@@ -25,10 +25,8 @@ export default function SearchBar({ movies }) {
 
   const filteredMoviesElements = filteredMovies
     .map((movie) => (
-      <Link to={`/${movie.id}`}>
-        <li key={movie.id} onClick={() => setSearchTerm("")}>
-          {movie.title}
-        </li>
+      <Link key={movie.id} to={`/${movie.id}`}>
+        <li onClick={() => setSearchTerm("")}>{movie.title}</li>
       </Link>
     ))
     .slice(0, 5);
