@@ -62,3 +62,9 @@
 .search-results li:hover {
   background-color: #73cb3e;
 }
+
+@media only screen and (max-width: 1100px) {
+  .search-bar {
+    width: 450px;
+  }
+}
