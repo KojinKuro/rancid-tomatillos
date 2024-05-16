@@ -1,5 +1,5 @@
 .search-result {
-  height: 70px;
+  height: var(--search-result--height);
 
   border-left: 1px solid #73cb3e;
   border-right: 1px solid #73cb3e;

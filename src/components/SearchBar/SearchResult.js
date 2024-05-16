@@ -3,12 +3,22 @@ import { Link } from "react-router-dom";
 import Circle from "../Circle";
 import "./SearchResult.css";
 
-export default function SearchResult({ movie }) {
+export default function SearchResult({ movie, selected }) {
   const linkRef = useRef(null);
   const clickLinkRef = () => linkRef.current.click();
 
+  console.log(selected);
+
+  const selectedStyle = {
+    backgroundColor: selected ? "#334a26" : "",
+  };
+
   return (
-    <section className="search-result" onMouseDown={clickLinkRef}>
+    <section
+      className={"search-result"}
+      style={selectedStyle}
+      onMouseDown={clickLinkRef}
+    >
       <Link className="result--container" to={`/${movie.id}`} ref={linkRef}>
         <img
           className="result--poster"

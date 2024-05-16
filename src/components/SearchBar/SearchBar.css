@@ -1,3 +1,7 @@
+:root {
+  --search-result--height: 70px;
+}
+
 .search-bar {
   width: 600px;
   position: relative;
