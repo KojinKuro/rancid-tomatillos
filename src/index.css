@@ -30,7 +30,3 @@ html {
 
   color: white;
 }
-
-input:focus {
-  outline: 1px solid #73cb3e;
-}

@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import "./SearchBar.css";
+import SearchResult from "./SearchResult";
 
 export default function SearchBar({ movies }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const inputRef = useRef();
+  const inputRef = useRef(null);
 
   useEffect(() => {
     if (!searchTerm.length) {
@@ -24,15 +24,11 @@ export default function SearchBar({ movies }) {
   }, [searchTerm, movies]);
 
   const filteredMoviesElements = filteredMovies
-    .map((movie) => (
-      <Link key={movie.id} to={`/${movie.id}`}>
-        <li onClick={() => setSearchTerm("")}>{movie.title}</li>
-      </Link>
-    ))
+    .map((movie) => <SearchResult key={movie.id} movie={movie} />)
     .slice(0, 5);
 
   return (
-    <div className="search-bar">
+    <div className="search-bar" onBlur={() => setSearchTerm("")}>
       <input
         ref={inputRef}
         type="text"
@@ -40,7 +36,7 @@ export default function SearchBar({ movies }) {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         style={{
-          borderRadius: filteredMovies.length ? "25px 25px 0 0" : "25px",
+          borderRadius: filteredMovies.length ? "17px 17px 0 0" : "17px",
         }}
       />
       <button

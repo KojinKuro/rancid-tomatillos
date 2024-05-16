@@ -5,7 +5,7 @@ import { getMovies } from "./apiCalls";
 import ErrorHandler from "./components/ErrorHandler";
 import Header from "./components/Header";
 import Logo from "./components/Logo";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "./components/SearchBar/index";
 import HomePage from "./pages/HomePage";
 import MoviePage from "./pages/MoviePage";
 // Old code for mock movie data
