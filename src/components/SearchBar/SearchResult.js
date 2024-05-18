@@ -7,18 +7,12 @@ export default function SearchResult({ movie, selected }) {
   const linkRef = useRef(null);
   const clickLinkRef = () => linkRef.current.click();
 
-  console.log(selected);
-
   const selectedStyle = {
     backgroundColor: selected ? "#334a26" : "",
   };
 
   return (
-    <section
-      className={"search-result"}
-      style={selectedStyle}
-      onMouseDown={clickLinkRef}
-    >
+    <section style={selectedStyle} onMouseDown={clickLinkRef}>
       <Link className="result--container" to={`/${movie.id}`} ref={linkRef}>
         <img
           className="result--poster"

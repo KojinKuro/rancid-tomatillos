@@ -1,3 +1,5 @@
+import "./SearchResult.css";
+
 export default function SearchMissing() {
   const missingStyle = {
     color: "#8d8d8d",
@@ -6,9 +8,5 @@ export default function SearchMissing() {
     alignItems: "center",
   };
 
-  return (
-    <div className="search-result" style={missingStyle}>
-      There is no result
-    </div>
-  );
+  return <div style={missingStyle}>There is no result</div>;
 }

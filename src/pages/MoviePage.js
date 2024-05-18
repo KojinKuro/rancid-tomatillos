@@ -37,7 +37,11 @@ export default function MoviePage() {
   return (
     <>
       <div className="background-image" style={backgroundStyle} />
-      <Link to="/" data-test-id="return-home-button">
+      <Link
+        to="/"
+        className="return-home-link"
+        data-test-id="return-home-button"
+      >
         <button className="return-home-button">
           <box-icon color="white" name="left-arrow-alt" />
           Return Home

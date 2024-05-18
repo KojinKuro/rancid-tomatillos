@@ -14,13 +14,13 @@ import MoviePage from "./pages/MoviePage";
 export const ErrorContext = createContext();
 
 function App() {
-  const [moviesData, setMoviesData] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [errors, setErrors] = useState([]);
 
   // call to the server for the movie data
   useEffect(() => {
     getMovies()
-      .then(setMoviesData)
+      .then(setMovies)
       .catch((error) => addError(`${error}`));
   }, []);
 
@@ -40,12 +40,12 @@ function App() {
   return (
     <div className="App">
       <ErrorContext.Provider value={{ addError }}>
-        <Header movies={moviesData}>
+        <Header>
           <Logo />
-          <SearchBar movies={moviesData} />
+          <SearchBar movies={movies} />
         </Header>
         <Routes>
-          <Route path="/" element={<HomePage moviesData={moviesData} />} />
+          <Route path="/" element={<HomePage movies={movies} />} />
           <Route path="/:movieId" element={<MoviePage />} />
         </Routes>
       </ErrorContext.Provider>

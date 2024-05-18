@@ -1,29 +1,29 @@
 import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./SearchBar.css";
+import SearchKeyboard from "./SearchKeyboard";
 import SearchMissing from "./SearchMissing";
 import SearchResult from "./SearchResult";
 
 export default function SearchBar({ movies }) {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState(movies);
   const [currentIndex, setCurrentIndex] = useState(null);
+  const navigate = useNavigate();
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if (!searchTerm.length) {
-      setFilteredMovies([]);
-      return;
-    }
+    if (!searchText.length) return;
 
     setFilteredMovies(
       movies
-        .sort((a, b) => a.title.localeCompare(b.title))
+        .toSorted((a, b) => a.title.localeCompare(b.title))
         .filter((movie) =>
-          movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+          movie.title.toLowerCase().includes(searchText.toLowerCase())
         )
     );
-  }, [searchTerm, movies]);
+  }, [searchText, movies]);
 
   const filteredMoviesElements = filteredMovies.length ? (
     filteredMovies
@@ -40,6 +40,8 @@ export default function SearchBar({ movies }) {
   );
 
   function handleKeyPress(event) {
+    // on escape
+    if (event.keyCode === 27) resetSearch();
     if (!filteredMoviesElements.length) return;
 
     if (event.keyCode === 38) {
@@ -51,8 +53,6 @@ export default function SearchBar({ movies }) {
       } else {
         setCurrentIndex((prevIndex) => --prevIndex);
       }
-
-      console.log("up");
     } else if (event.keyCode === 40) {
       // on arrow down
       if (currentIndex === null) {
@@ -62,26 +62,27 @@ export default function SearchBar({ movies }) {
       } else {
         setCurrentIndex((prevIndex) => ++prevIndex);
       }
-
-      console.log("down");
     } else if (event.keyCode === 13) {
-      console.log("enter");
-    } else if (event.keyCode === 27) {
-      // on escape
+      // on enter
+      if (currentIndex === null) return;
+
+      navigate(`/${filteredMovies[currentIndex].id}`);
       resetSearch();
     }
   }
 
   function handleSearch(event) {
-    setSearchTerm(event.target.value);
+    setSearchText(event.target.value);
     setCurrentIndex(null);
   }
 
-  console.log(currentIndex);
-
   function resetSearch() {
-    setSearchTerm("");
+    setSearchText("");
     setCurrentIndex(null);
+  }
+
+  function handleButton() {
+    inputRef.current.focus();
   }
 
   return (
@@ -90,21 +91,20 @@ export default function SearchBar({ movies }) {
         ref={inputRef}
         type="text"
         placeholder="Search movies"
-        value={searchTerm}
+        value={searchText}
         onChange={handleSearch}
         style={{
-          borderRadius: searchTerm.length ? "17px 17px 0 0" : "17px",
+          borderRadius: searchText.length ? "17px 17px 0 0" : "17px",
         }}
       />
-      <button
-        type="button"
-        className="search-button"
-        onClick={() => inputRef.current.focus()}
-      >
+      <button type="button" className="search-button" onClick={handleButton}>
         <box-icon color="#73CB3E" name="search-alt-2"></box-icon>
       </button>
-      {searchTerm !== "" && (
-        <ul className="search-results">{filteredMoviesElements}</ul>
+      {searchText !== "" && (
+        <ul className="search-results">
+          {filteredMoviesElements}
+          <SearchKeyboard />
+        </ul>
       )}
     </div>
   );
