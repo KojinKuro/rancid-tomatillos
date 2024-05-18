@@ -54,7 +54,7 @@ describe("template spec", () => {
     );
 
     // navigate to the first mock movie
-    cy.visit("/694919");
+    cy.visit("/#/694919");
 
     // should have a header and no footer
     cy.get("header");
@@ -133,7 +133,7 @@ describe("template spec", () => {
     );
 
     // navigate to the last mock movie
-    cy.visit("/585244");
+    cy.visit("/#/585244");
 
     // should have a header and no footer
     cy.get("header");

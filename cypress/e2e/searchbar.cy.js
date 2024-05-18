@@ -17,7 +17,7 @@ describe("template spec", () => {
       .type("afTer We Collided")
       .should("have.value", "afTer We Collided");
     cy.getTestId("search-result").should("have.length", 1).click();
-    cy.url().should("include", `${baseURL}/613504`);
+    cy.url().should("include", `${baseURL}/#/613504`);
 
     // will clear on click off
     cy.get("body").click(0, 0);
@@ -35,7 +35,7 @@ describe("template spec", () => {
       .and("contain", "2020");
 
     cy.getTestId("search-result").first().click();
-    cy.url().should("include", `${baseURL}/627290`);
+    cy.url().should("include", `${baseURL}/#/627290`);
     cy.visit("/");
 
     cy.getTestId("search-bar-input").type("m");
@@ -45,7 +45,7 @@ describe("template spec", () => {
       .and("contain", "5.0/10.0")
       .and("contain", "2020");
     cy.getTestId("search-result").last().click();
-    cy.url().should("include", `${baseURL}/659991`);
+    cy.url().should("include", `${baseURL}/#/659991`);
     cy.visit("/");
 
     // can look up something that doesn't exist
@@ -68,25 +68,25 @@ describe("template spec", () => {
     cy.get("body").type("{downArrow}{enter}");
     cy.getTestId("search-results").should("not.exist");
     cy.getTestId("search-bar-input").should("have.value", "");
-    cy.url().should("include", `${baseURL}/500840`);
+    cy.url().should("include", `${baseURL}/#/500840`);
 
     cy.visit("/");
 
     cy.getTestId("search-bar-input").type("k");
     cy.get("body").type("{downArrow}{downArrow}{enter}");
-    cy.url().should("include", `${baseURL}/579583`);
+    cy.url().should("include", `${baseURL}/#/579583`);
 
     cy.visit("/");
 
     cy.getTestId("search-bar-input").type("k");
     cy.get("body").type("{upArrow}{enter}");
-    cy.url().should("include", `${baseURL}/579583`);
+    cy.url().should("include", `${baseURL}/#/579583`);
 
     cy.visit("/");
 
     cy.getTestId("search-bar-input").type("k");
     cy.get("body").type("{upArrow}{upArrow}{enter}");
-    cy.url().should("include", `${baseURL}/500840`);
+    cy.url().should("include", `${baseURL}/#/500840`);
 
     cy.visit("/");
 
