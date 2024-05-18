@@ -1,9 +1,16 @@
+:root {
+  --circle-size: 22px;
+}
+
 div[class^="circle"] {
   background: white;
   border-radius: 100%;
   display: inline-block;
   overflow: hidden;
   position: relative;
+
+  width: var(--circle-size);
+  height: var(--circle-size);
 
   &:after {
     content: "";
@@ -25,4 +32,10 @@ div.circle75:after {
 }
 div.circle100:after {
   width: 100%;
+}
+
+@media (max-width: 480px) {
+  :root {
+    --circle-size: 15px;
+  }
 }

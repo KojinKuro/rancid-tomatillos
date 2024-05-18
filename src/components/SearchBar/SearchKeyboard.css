@@ -1,0 +1,5 @@
+.search-keyboard span {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}

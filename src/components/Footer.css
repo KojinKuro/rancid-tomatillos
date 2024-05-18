@@ -14,12 +14,12 @@ footer {
     flex-direction: column;
     justify-content: space-between;
 
-    max-width: 450px;
     padding-left: 20px;
     border-left: 1px solid white;
 
-    /* remove browser default */
-    p {
+    .footer--about-text {
+      /* remove browser default */
+      max-width: 450px;
       margin: 0;
     }
   }
@@ -60,7 +60,7 @@ footer {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   footer {
     flex-direction: column;
     align-items: center;
@@ -70,39 +70,33 @@ footer {
 
     .footer--about {
       max-width: 100%;
+      gap: 10px;
+
       padding-left: 0;
+      padding-bottom: 20px;
+
       border-left: none;
-      border-top: 1px solid white;
-      padding-top: 20px;
-      margin-top: 20px;
+      border-bottom: 1px solid white;
     }
 
     .footer--credits {
       margin-top: 20px;
+      width: 100%;
     }
   }
 
   .credit--container {
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
 }
 
-@media (max-width: 480px) {
-  footer {
-    padding: 15px 5px;
-
-    .footer--about {
-      padding-top: 15px;
-      margin-top: 15px;
-    }
-
-    .footer--credits {
-      margin-top: 15px;
-    }
-  }
-
+@media (max-width: 540px) {
   .credit--container {
-    gap: 10px;
+    flex-direction: column;
+
+    .credit--name {
+      text-align: left;
+    }
   }
 }
