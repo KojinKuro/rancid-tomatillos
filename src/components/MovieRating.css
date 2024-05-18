@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
 
   color: #8d8d8d;
   font-size: 0.9rem;
@@ -11,5 +10,5 @@
 /* CSS below is for movie rating container */
 .circle--container {
   display: flex;
-  gap: 4px;
+  gap: 5px;
 }

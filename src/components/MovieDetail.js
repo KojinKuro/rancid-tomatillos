@@ -19,7 +19,7 @@ export default function MovieDetail({ movie }) {
   return (
     <section className="movie-details">
       <img src={poster_path} alt={`${title} poster`} />
-      <div className="movie-title--container">
+      <div>
         <h1 data-test-id="movie-title">{title}</h1>
         <div data-test-id="movie-tagline">{tagline}</div>
       </div>

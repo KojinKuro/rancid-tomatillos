@@ -16,13 +16,27 @@ export default function MoviePage() {
       .catch(() => setMovieError(true));
   }, [movieId]);
 
-  const backgroundImage = {
+  const backgroundStyle = {
+    position: "fixed",
+    left: 0,
+    right: 0,
+
     backgroundImage: movie ? `url(${movie.backdrop_path})` : "",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    filter: "blur(7px)",
+
+    opacity: "25%",
+
+    zIndex: "1",
+    display: "block",
+    width: "100%",
+    height: "100vh",
   };
 
   return (
     <>
-      <div className="background-image" style={backgroundImage} />
+      <div className="background-image" style={backgroundStyle} />
       <Link
         to="/"
         className="return-home-link"
