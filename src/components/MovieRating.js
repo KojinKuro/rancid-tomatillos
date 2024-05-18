@@ -22,7 +22,7 @@ export default function MovieRating({ rating, ...props }) {
   return (
     <div className="movie--rating" {...props}>
       <span className="circle--container">{ratingElements}</span>
-      <span>{formattedRating} / 10.0</span>
+      <span className="movie--rating-text">{formattedRating} / 10.0</span>
     </div>
   );
 }
