@@ -1,26 +1,24 @@
 .header {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative; /* changed to relative because overlapping */
   z-index: 1000;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 10px 20px;
-
   background-color: transparent;
 }
 
 @media (max-width: 768px) {
   .header {
     padding: 10px 15px;
-    max-width: 150px;
+    flex-direction: column;
+    align-items: center;
   }
 
   .header .search-bar {
     width: 80%;
+    margin-top: 10px;
   }
 }
 
@@ -28,8 +26,7 @@
   .header {
     padding: 10px 10px;
     flex-direction: column;
-    align-items: flex-start;
-    max-width: 120px
+    align-items: center;
   }
 
   .header .search-bar {
