@@ -88,6 +88,7 @@ export default function SearchBar({ movies }) {
   return (
     <div className="search-bar" onBlur={resetSearch} onKeyDown={handleKeyPress}>
       <input
+        data-test-id="search-bar-input"
         ref={inputRef}
         type="text"
         placeholder="Search movies"
@@ -101,7 +102,7 @@ export default function SearchBar({ movies }) {
         <box-icon color="#73CB3E" name="search-alt-2"></box-icon>
       </button>
       {searchText !== "" && (
-        <ul className="search-results">
+        <ul className="search-results" data-test-id="search-results">
           {filteredMoviesElements}
           <SearchKeyboard />
         </ul>

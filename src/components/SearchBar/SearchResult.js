@@ -12,7 +12,11 @@ export default function SearchResult({ movie, selected }) {
   };
 
   return (
-    <section style={selectedStyle} onMouseDown={clickLinkRef}>
+    <section
+      data-test-id="search-result"
+      style={selectedStyle}
+      onMouseDown={clickLinkRef}
+    >
       <Link className="result--container" to={`/${movie.id}`} ref={linkRef}>
         <img
           className="result--poster"

@@ -8,5 +8,9 @@ export default function SearchMissing() {
     alignItems: "center",
   };
 
-  return <div style={missingStyle}>There is no result</div>;
+  return (
+    <div data-test-id="search-missing" style={missingStyle}>
+      There is no result
+    </div>
+  );
 }
