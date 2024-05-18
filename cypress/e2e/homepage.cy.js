@@ -65,8 +65,31 @@ describe("Homepage", () => {
     cy.get('.movies-container .movie').should('have.length', 5);
 
     cy.get('.movies-container .movie').first().within(() => {
-      cy.get('.movie--title').contains('Black Adam'); 
+      cy.get('.movie--title').contains('Black Adam');
       cy.get('.movie--poster img').should('have.attr', 'src').should('include', 'pFlaoHTZeyNkG83vxsAJiGzfSsa.jpg');
     });
+
+    cy.get('.movies-container .movie').last().within(() => {
+      cy.get('.movie--title').contains('Minions: The Rise of Gru');
+      cy.get('.movie--poster img').should('have.attr', 'src').should('include', 'rwgmDkIEv8VjAsWx25ottJrFvpO.jpg');
+    });
+  });
+
+  it("Should navigate to the appropriate movie page when a movie poster is clicked", () => {
+    cy.wait('@getMovie436270');
+
+    // ensure the first movie poster is visible and enabled before clicking. $el is a varaible indicating that this is a wrapped element
+    cy.get('.movies-container .movie').first().should('be.visible').then(($el) => {
+      cy.wrap($el).click();
+    });
+    cy.url().should('include', '/436270');
+    cy.wait('@getMovie436270');
+
+    cy.get('[data-test-id="movie-title"]').should('be.visible').contains("Black Adam");
+    cy.wait(500);
+
+    cy.get('[data-test-id="return-home-button"]').should('be.visible').click({ force: true });
+
+    cy.url().should('eq', 'http://localhost:3000/');
   });
 });
