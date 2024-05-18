@@ -1,9 +1,19 @@
 # 🍅 Rancid Tomatillos
 
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+
 This project is definitely not Rotten Tomatoes. Nor is it Netflix. Nor is it IMDB. It’s Rancid Tomatillos. Very different!
 ## 📸 Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+<img src="https://github.com/KojinKuro/rancid-tomatillos/assets/11234292/357813d6-4f86-4097-ba83-f4dddc084705" width="70%" alt="App screenshot" />
 
 
 ## 🌐 Overview
@@ -19,7 +29,7 @@ This is a React Frontend site that calls a movie database and displays said data
 - e2e Cypress Testing
 ## 🎥 Demo
 
-Insert gif or link to demo
+[Live demo](https://kojinkuro.github.io/rancid-tomatillos/)
 
 
 ## 🛠️ Installation
@@ -69,7 +79,5 @@ Finally, we got Cypress testing going, but Cypress has more features than what w
 
 
 ## 📄 License
-
-[MIT](https://choosealicense.com/licenses/mit/)
 
 This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.md) for more details.
