@@ -50,6 +50,7 @@ export default function MovieVideos({ movieId }) {
       showIndicators={false}
       useKeyboardArrows={true}
       emulateTouch={true}
+      className="movie-videos--carousel"
     >
       {videoElements}
     </Carousel>

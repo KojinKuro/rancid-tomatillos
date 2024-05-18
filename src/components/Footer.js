@@ -6,7 +6,7 @@ export default function Footer() {
     <footer>
       <article className="footer--about">
         <Logo />
-        <p>
+        <p className="footer--about-text">
           This project is definitely not Rotten Tomatoes. Nor is it Netflix. Nor
           is it IMDB. It’s Rancid Tomatillos. Very different!
         </p>
