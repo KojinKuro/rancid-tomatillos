@@ -12,3 +12,28 @@
 
   background-color: transparent;
 }
+
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 15px;
+    max-width: 150px;
+  }
+
+  .header .search-bar {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 120px
+  }
+
+  .header .search-bar {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
