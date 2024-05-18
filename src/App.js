@@ -5,7 +5,7 @@ import { getMovies } from "./apiCalls";
 import ErrorHandler from "./components/ErrorHandler";
 import Header from "./components/Header";
 import Logo from "./components/Logo";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "./components/SearchBar/index";
 import HomePage from "./pages/HomePage";
 import MoviePage from "./pages/MoviePage";
 // Old code for mock movie data
@@ -14,13 +14,13 @@ import MoviePage from "./pages/MoviePage";
 export const ErrorContext = createContext();
 
 function App() {
-  const [moviesData, setMoviesData] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [errors, setErrors] = useState([]);
 
   // call to the server for the movie data
   useEffect(() => {
     getMovies()
-      .then(setMoviesData)
+      .then(setMovies)
       .catch((error) => addError(`${error}`));
   }, []);
 
@@ -40,12 +40,12 @@ function App() {
   return (
     <div className="App">
       <ErrorContext.Provider value={{ addError }}>
-        <Header movies={moviesData}>
+        <Header>
           <Logo />
-          <SearchBar movies={moviesData} />
+          <SearchBar movies={movies} />
         </Header>
         <Routes>
-          <Route path="/" element={<HomePage moviesData={moviesData} />} />
+          <Route path="/" element={<HomePage movies={movies} />} />
           <Route path="/:movieId" element={<MoviePage />} />
         </Routes>
       </ErrorContext.Provider>

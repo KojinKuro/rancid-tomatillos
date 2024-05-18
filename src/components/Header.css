@@ -9,6 +9,17 @@
   align-items: center;
   width: 100%;
   padding: 10px 20px;
+  gap: 20px;
 
   background-color: transparent;
+
+  @media (width < 1100px) {
+    position: relative;
+    flex-direction: column;
+
+    .search-bar {
+      flex: 1;
+      width: 100%;
+    }
+  }
 }
