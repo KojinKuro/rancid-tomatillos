@@ -14,12 +14,12 @@ footer {
     flex-direction: column;
     justify-content: space-between;
 
-    max-width: 450px;
     padding-left: 20px;
     border-left: 1px solid white;
 
-    /* remove browser default */
-    p {
+    .footer--about-text {
+      /* remove browser default */
+      max-width: 450px;
       margin: 0;
     }
   }

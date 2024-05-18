@@ -16,28 +16,18 @@ export default function MoviePage() {
       .catch(() => setMovieError(true));
   }, [movieId]);
 
-  const backgroundStyle = {
-    position: "fixed",
-    left: 0,
-    right: 0,
-
+  const backgroundImage = {
     backgroundImage: movie ? `url(${movie.backdrop_path})` : "",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    filter: "blur(7px)",
-
-    opacity: "25%",
-
-    zIndex: "1",
-    display: "block",
-    width: "100%",
-    height: "100vh",
   };
 
   return (
     <>
-      <div className="background-image" style={backgroundStyle} />
-      <Link to="/" data-test-id="return-home-button">
+      <div className="background-image" style={backgroundImage} />
+      <Link
+        to="/"
+        className="return-home-link"
+        data-test-id="return-home-button"
+      >
         <button className="return-home-button">
           <box-icon color="white" name="left-arrow-alt" />
           Return Home

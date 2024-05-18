@@ -1,0 +1,74 @@
+.search-results > * {
+  height: var(--search-result--height);
+
+  border-left: 1px solid #73cb3e;
+  border-right: 1px solid #73cb3e;
+
+  &:nth-child(odd) {
+    background-color: #1e1e1e;
+  }
+
+  &:nth-child(even) {
+    background-color: #000000;
+  }
+
+  /* also acts as code for keyboard display */
+  &:last-child {
+    border-bottom: 1px solid #73cb3e;
+
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 0 25px 25px;
+  }
+
+  &:hover {
+    background-color: #334a26;
+  }
+}
+
+.result--container {
+  text-decoration: none;
+  color: white;
+
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+}
+
+.result--poster {
+  height: 60px;
+  aspect-ratio: 2 / 3;
+}
+
+.result--info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+
+  overflow: hidden; /* IMPORTANT DO NOT REMOVE */
+}
+
+.result--info-title {
+  margin: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result--info-detail {
+  display: flex;
+  gap: 25px;
+  /* clean up styling CSS */
+  padding: 0;
+  li {
+    color: #8d8d8d;
+    padding: 0;
+    list-style-type: none;
+
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+}
