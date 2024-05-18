@@ -22,3 +22,21 @@
     background-color: #73cb3e;
   }
 }
+
+@media (max-width: 768px) {
+  .return-home-button {
+    top: 60px;
+    left: 10px;
+    padding: 8px 14px 8px 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .return-home-button {
+    top: 40px;
+    left: 5px;
+    padding: 6px 10px 6px 6px;
+    font-size: 12px;
+  }
+}
