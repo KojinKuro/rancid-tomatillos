@@ -18,7 +18,8 @@ This project is definitely not Rotten Tomatoes. Nor is it Netflix. Nor is it IMD
 
 ## 🌐 Overview
 
-This is a React Frontend site that calls a movie database and displays said data. This site includes search, dynamic routing for each movie, and support for various screen sizes. The main goal of this project was to learn using React in a team environment, React Router, Cypress E2E testing, and mobile responsive design.
+This is a React Frontend site that calls a movie database and displays said data. This site includes search, dynamic routing for each movie, and support for various screen sizes. The main goal of this project was to learn using React in a team environment, React Router, Cypress E2E testing, and mobile responsive design. Included here is [the mockup](https://www.figma.com/design/kJtRpJEbqZbW0112hJrzPQ/Untitled?node-id=14%3A1533&t=qbkr7TGAq7T1wtDT-1) created for this site.
+
 ## ✨ Features
 
 - Fetching data from a database with API calls
